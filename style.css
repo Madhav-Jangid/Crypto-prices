@@ -35,7 +35,15 @@ body{
 }
 
 .headings h1{
+    display: flex;
+    position: fixed;
     padding-bottom: 1rem;
+    color: aqua;
+}
+
+.headings h3{
+    position: fixed;
+    padding-top: 5rem;
 }
 
 .results{
@@ -56,7 +64,7 @@ body{
     font-size: 25px;
     outline: none;
     position: fixed;
-    bottom: 61.8vh;
+    bottom: 60.3vh;
 }
 
 #submitButton{
@@ -68,13 +76,13 @@ body{
     margin-top: 0.5rem;
     font-size: 20px;
     position: fixed;
-    bottom: 54.6vh;
+    bottom: 53.9vh;
 }
 
 #submitButton:hover{
     background-color: transparent;
     color: aliceblue;
-    transition: all ease-in-out 0.2s;
+    transition: all ease-out 0.2s;
 }
 
 .final-results{
@@ -89,9 +97,15 @@ body{
     border: 3px solid rgb(82, 86, 87);
     position: fixed;
     bottom: 0;
-    margin: 1.4rem 0;
+    margin-bottom: 1.4rem;
 }
 
 .final-results h6{
     padding: 0.5rem 0;
+}
+
+@media screen and (max-width: 786px) {
+    h1{
+        font-size: x-large;
+    }
 }
