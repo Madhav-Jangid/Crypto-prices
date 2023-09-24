@@ -1,47 +1,42 @@
 const search = document.getElementById('textInput');
 const button = document.getElementById('submitButton');
-const reault = document.getElementById('result')
+const resultName = document.getElementById('resultname');
+const resultId = document.getElementById('resultid');
+const resultRank = document.getElementById('resultrank');
+const resultPrice = document.getElementById('resultprice');
+const resultdiv = document.getElementById('mainrsdiv');
 
-// let FinalResult = { 
-//     "ID": idof, 
-//     "Rank": rankof, 
-//     "Symbol": symbolof, 
-//     "Name": nameof, 
-//     "Price(USD": priceof, 
-// }
 
-function processData(data, textentered) {
-    let CryptoObj = data.data[0];
-    console.log(CryptoObj[textentered]);
-}
+search.addEventListener('keyup', function (event) {
+  if (event.keyCode === 13) {
+    handleInput();
+  }
+});
 
-search.addEventListener('keyup',function(event){
-    if(event.keyCode === 13){
-        handleinput();
+button.addEventListener('click', function () {
+  handleInput();
+});
+
+async function handleInput() {
+  let txt = search.value;
+  try {
+    const response = await fetch('https://api.coincap.io/v2/assets');
+    const data = await response.json();
+    
+    const cryptoData = data.data.find(item => item.name === txt);
+    
+    if (cryptoData) {
+      resultName.innerHTML = ('Name: ' + cryptoData.name);
+      resultId.innerHTML = ('Id: ' + cryptoData.id);
+      resultRank.innerHTML = ('Rank: ' + cryptoData.rank);
+      resultPrice.innerHTML = ('Price($): ' + cryptoData.priceUsd);
+    } else {
+      // Handle the case when the cryptocurrency is not found
+      resultdiv.innerHTML = 'Cryptocurrency not found :(';
     }
-});
-
-button.addEventListener('click',function(){
-    handleinput();
-});
-
-
-function handleinput(){
-    let txt = String(search.value);
-    let promise = fetch('https://api.coincap.io/v2/assets');
-    promise.then(response => {
-        return response.json();
-    }).then(data => {
-        var Info = (data.data);
-        for (var i = 0; i < 100; i++) {
-            if (Info[i]['name'] == txt) {
-                let detail = JSON.stringify(data.data[i], null, 2);
-                reault.innerHTML = detail;
-                break;
-            }
-        }
-    }).catch(error => {
-        console.error('Error:', error);
-    });
-    search.value = ''
+  } catch (error) {
+    console.error('Error:', error);
+  }
+  
+  search.value = '';
 }
