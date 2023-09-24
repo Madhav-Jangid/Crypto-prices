@@ -108,4 +108,24 @@ body{
     h1{
         font-size: x-large;
     }
+
+    #textInput{
+        bottom: 50.7vh;
+    }
+    
+    #submitButton{
+        border-radius: 13px;
+        border: 3px solid rgb(82, 86, 87);
+        width: 90%;
+        max-width: 50rem;
+        height: 2.5rem;
+        margin-top: 0.5rem;
+        font-size: 20px;
+        position: fixed;
+        bottom: 44.2vh;
+    }
+
+    .final-results{
+        height: 40vh;
+    }
 }
