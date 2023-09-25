@@ -14,6 +14,7 @@ search.addEventListener('keyup', function (event) {
 });
 
 button.addEventListener('click', function () {
+  // search.classList.toggle("toggleClass");
   handleInput();
 });
 
